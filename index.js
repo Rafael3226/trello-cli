@@ -8,6 +8,7 @@ import { listTasks } from './src/commands/listTasks.js';
 import { createTask } from './src/commands/createTask.js';
 import { listLists } from './src/commands/listLists.js';
 import { updateTask } from './src/commands/updateTask.js';
+import { taskDetail } from './src/commands/taskDetail.js';
 
 const program = new Command();
 
@@ -81,6 +82,13 @@ program
   .action((cardId, options) => {
     updateTask(cardId, options);
   });
+
+program
+  .command('task-detail')
+  .alias('detail')
+  .description('Show detailed information about a specific task (card)')
+  .argument('<cardId>', 'The ID of the card')
+  .action(taskDetail);
 
 program.parse();
 

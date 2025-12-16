@@ -134,6 +134,38 @@ class TrelloClient {
     }
 
     /**
+     * Get detailed information about a specific card
+     */
+    async getCardDetails(cardId) {
+        return this.get(`/cards/${cardId}`, {
+            fields: 'id,name,desc,due,idList,idBoard,url,closed,dateLastActivity',
+            members: 'true',
+            member_fields: 'id,username,fullName',
+            labels: 'true',
+            attachments: 'true',
+            checklists: 'all',
+        });
+    }
+
+    /**
+     * Get board information by ID
+     */
+    async getBoard(boardId) {
+        return this.get(`/boards/${boardId}`, {
+            fields: 'id,name,url',
+        });
+    }
+
+    /**
+     * Get list information by ID
+     */
+    async getList(listId) {
+        return this.get(`/lists/${listId}`, {
+            fields: 'id,name,idBoard',
+        });
+    }
+
+    /**
      * Create a new card (task) in a list
      */
     async createCard(listId, name, options = {}) {
