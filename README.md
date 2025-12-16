@@ -285,6 +285,71 @@ trello update-task <cardId> --closed false
 trello update-task <cardId> --name "New Name" --desc "New Desc" --due "2024-12-31"
 ```
 
+### Task Detail
+
+Show detailed information about a specific task (card):
+
+```bash
+trello task-detail <cardId>
+# or
+trello detail <cardId>
+```
+
+**Example:**
+```bash
+trello task-detail 5f8a1b2c3d4e5f6a7b8c9d0e
+```
+
+**Output:**
+- Basic Information (name, ID, status, URL)
+- Location (board and list names)
+- Full Description
+- Due Date (with overdue warning if applicable)
+- Assigned Members
+- Labels
+- Attachments
+- Checklists (with completion status)
+- Last Activity Date
+
+**Example Output:**
+```
+============================================================
+TASK DETAILS
+============================================================
+
+📋 Basic Information:
+   Name: Updated Test Task from CLI
+   ID: 69419b3d72c13061acf49f35
+   Status: ✅ Open
+   URL: https://trello.com/c/mrsYSuQB/71-updated-test-task-from-cli
+
+📊 Location:
+   Board: Lusso (66f715ac2c46ab510c0a76b3)
+   List: Prioritization (670d53cd2c6f73529b868f3a)
+
+📝 Description:
+   This task has been updated via the CLI
+
+📅 Due Date:
+   12/30/2024, 7:00:00 PM ⚠️  OVERDUE
+
+👥 Members:
+   • John Doe (@johndoe)
+
+🏷️  Labels:
+   • High Priority (red)
+
+✅ Checklists:
+   Checklist 1:
+   ✓ Item 1
+   ☐ Item 2
+
+🕐 Last Activity:
+   12/16/2025, 1:50:48 PM
+
+============================================================
+```
+
 ### Add User
 
 Add a user to a board by email:
@@ -317,6 +382,7 @@ trello add-user 5f8a1b2c3d4e5f6a7b8c9d0e admin@example.com --type admin
 | `list-tasks <boardId>` | `tasks` | List all tasks (cards) in a board | `<boardId>` |
 | `create-task <listId> <name>` | `create` | Create a new task in a list | `<listId> <name>` |
 | `update-task <cardId>` | `update` | Update an existing task | `<cardId>` |
+| `task-detail <cardId>` | `detail` | Show detailed information about a task | `<cardId>` |
 | `add-user <boardId> <email>` | `add` | Add a user to a board | `<boardId> <email>` |
 
 ## Project Structure
@@ -336,6 +402,7 @@ trello-cli/
         ├── listTasks.js     # List tasks command
         ├── createTask.js    # Create task command
         ├── updateTask.js    # Update task command
+        ├── taskDetail.js    # Task detail command
         └── addUser.js       # Add user command
 ```
 
@@ -374,13 +441,19 @@ trello create-task <listId> "New Feature" --desc "Implement new feature" --due "
 # 4. List tasks to see the new task
 trello list-tasks <boardId>
 
-# 5. Get card ID, then update the task
+# 5. Get card ID, then view task details
+trello task-detail <cardId>
+
+# 6. Update the task
 trello update-task <cardId> --name "Updated Feature Name"
 
-# 6. Move task to different list
+# 7. Move task to different list
 trello update-task <cardId> --list-id <newListId>
 
-# 7. Add a user to the board
+# 8. View updated task details
+trello task-detail <cardId>
+
+# 9. Add a user to the board
 trello add-user <boardId> user@example.com
 ```
 
