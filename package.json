@@ -1,0 +1,25 @@
+{
+  "name": "trello-cli",
+  "version": "1.0.0",
+  "description": "CLI tool for interacting with Trello API",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "trello": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "trello",
+    "cli",
+    "api"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^11.1.0",
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1"
+  }
+}
